@@ -108,7 +108,7 @@ optional arguments:
 }
 
 ```
-**Select and display individual values**
+### Select and display individual values
 
 `speedtest --json | jq ' .upload, .download, .ping, .client.isp, .client.ip'`  
 ```
@@ -119,16 +119,17 @@ optional arguments:
 "109.40.241.181"
 ```
 
-**select single values and read them into an array**  
+### Select single values and read them into an array  
+
 Why read into an array? With this you can perform the speed test once and then use the individual values for further actions.  
 
 `readarray -t mySpeedTest <<<$( (speedtest --json | jq -r '.timestamp, .upload, .download, .ping, .client.isp, .client.ip') )`  
 
-output the array length:  
+**output the array length:**  
 `echo ${#mySpeedTest[@]}` 
 
-display array values:  
+**display array values:**  
 `echo ${mySpeedTest[@]}`  
 
-output single values (timestamp):  
+**output single values (e.g. timestamp):**  
 `echo ${mySpeedTest[0]}`  
