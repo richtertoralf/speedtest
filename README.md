@@ -133,3 +133,17 @@ Why read into an array? With this you can perform the speed test once and then u
 
 **output single values (e.g. timestamp):**  
 `echo ${mySpeedTest[0]}`  
+
+oder
+```
+pi@NanoPi-R1S-H3:~$ speedtest --json | jq -r '.download, .upload, .ping, .client.ip, .client.isp' > speed.info
+pi@NanoPi-R1S-H3:~$ cat speed.info 
+9366684.470115473
+6495362.381082652
+51.41
+109.40.241.227
+Vodafone Germany
+pi@NanoPi-R1S-H3:~$ readarray speedInfo < speed.info
+pi@NanoPi-R1S-H3:~$ echo ${speedInfo[*]}
+9366684.470115473 6495362.381082652 51.41 109.40.241.227 Vodafone Germany
+```
